@@ -7,6 +7,7 @@ export function Home() {
   const [studants, setStudants] = useState([]);
   
   function handleAddStudant(){
+
     const newStudant = {
       name: studantName,
       time: new Date().toLocaleTimeString('pt-br', {
@@ -14,28 +15,28 @@ export function Home() {
         minute: '2-digit',
         second: '2-digit',
       })
-    };
 
+    };
+  
     setStudants(prevState => [...prevState, newStudant])
   }
 
   return (
-    <div className="container">
+    <form className="container">
       <h1>Lista de Presença</h1>
       <input
         type="text"
         placeholder="Digite o nome..."
-        onChange={(e) => setStudantName(e.target.value)}
-      />
+        onChange={(e) => setStudantName(e.target.value)}/>
       <button type="button" onClick={handleAddStudant}>
         Adicionar
       </button>
 
       {
-        studants.map(studant => <Card name={studant.name} time={studant.time} />)
+        studants.map(studant => <Card key={studant.time} name={studant.name} time={studant.time} />)
       }
 
 
-    </div>
+    </form>
   )
 }
